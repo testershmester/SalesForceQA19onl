@@ -16,6 +16,11 @@ public class NewAccountModalPage extends BasePage {
         super(driver);
     }
 
+    @Override
+    protected NewAccountModalPage waitForPageOpening() {
+        return null;
+    }
+
     public AccountDetailsPage createNewAccount(String accountName, String type, String industry, String phone) {
         new Input(driver, "Account Name").fillIn(accountName);
         new Input(driver, "Account Information", "Phone").fillIn(phone);

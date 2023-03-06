@@ -4,8 +4,11 @@ import by.teachmeskills.BasePage;
 import by.teachmeskills.util.PropertiesLoader;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
+import java.util.List;
 import java.util.Properties;
 
 public class AccountsPage extends BasePage {
@@ -14,6 +17,9 @@ public class AccountsPage extends BasePage {
 
     private By ACCOUNTS_TITLE_LOCATOR = By.xpath("//span[text()='Accounts' and @class='slds-var-p-right_x-small']");
     private By NEW_BTN_LOCATOR = By.xpath("//div[@title='New']");
+
+    @FindBy(xpath = "//th//a[@data-refid='recordId']")
+    private List<WebElement> accounts;
 
     public AccountsPage(WebDriver driver) {
         super(driver);
@@ -26,6 +32,7 @@ public class AccountsPage extends BasePage {
         return this;
     }
 
+    @Override
     public AccountsPage waitForPageOpening() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(ACCOUNTS_TITLE_LOCATOR));
         return this;

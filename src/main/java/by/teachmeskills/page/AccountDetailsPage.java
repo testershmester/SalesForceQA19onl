@@ -16,6 +16,11 @@ public class AccountDetailsPage extends BasePage {
         super(driver);
     }
 
+    @Override
+    protected AccountDetailsPage waitForPageOpening() {
+        return null;
+    }
+
     public AccountDetailsPage waitForAccountCreationNotificationDisplayed() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(accCreationToastMsgLocator));
         return this;

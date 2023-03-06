@@ -2,19 +2,25 @@ package by.teachmeskills.page;
 
 import by.teachmeskills.BasePage;
 import by.teachmeskills.util.PropertiesLoader;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
 import java.util.Properties;
 
 public class LoginPage extends BasePage {
 
-    private By username = By.id("username");
-    private By password = By.id("password");
-    private By loginButton = By.id("Login");
+    @FindBy(id = "username")
+    private WebElement username;
+    @FindBy(id = "password")
+    private WebElement password;
+    @FindBy(id = "Login")
+    private WebElement loginButton;
 
     public LoginPage(WebDriver driver) {
         super(driver);
+        PageFactory.initElements(driver, this);
     }
 
     public LoginPage open() {
@@ -24,11 +30,16 @@ public class LoginPage extends BasePage {
         return this;
     }
 
+    @Override
+    protected LoginPage waitForPageOpening() {
+        return null;
+    }
+
     public HomePage login() {
         Properties properties = PropertiesLoader.loadProperties();
-        driver.findElement(username).sendKeys(properties.getProperty("username"));
-        driver.findElement(password).sendKeys(properties.getProperty("password"));
-        driver.findElement(loginButton).click();
+        username.sendKeys(properties.getProperty("username"));
+        password.sendKeys(properties.getProperty("password"));
+        loginButton.click();
         return new HomePage(driver);
     }
 }

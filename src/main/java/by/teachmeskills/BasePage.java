@@ -7,7 +7,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
-public class BasePage {
+public abstract class BasePage {
 
     protected WebDriver driver;
     protected WebDriverWait wait;
@@ -16,6 +16,8 @@ public class BasePage {
         this.driver = driver;
         wait = new WebDriverWait(driver, Duration.ofSeconds(20));
     }
+
+    protected abstract BasePage waitForPageOpening();
 
     public void waitForPageLoaded() {
         new ExpectedCondition<Boolean>() {
