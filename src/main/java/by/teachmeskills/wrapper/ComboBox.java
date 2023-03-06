@@ -11,7 +11,7 @@ public class ComboBox {
     private WebDriverWait wait;
     private String label;
 
-    public static final String DROP_DOWN_LOCATOR = "//label[text()='%s']//ancestor::lightning-grouped-combobox";
+    public static final String COMBO_BOX_LOCATOR = "//label[text()='%s']//ancestor::lightning-grouped-combobox//input";
     public static final String ITEM_LOCATOR = "//li//span[@title='%s']";
 
     public ComboBox(WebDriver driver, String label) {
@@ -20,10 +20,10 @@ public class ComboBox {
     }
 
     public void select(String text) {
-        driver.findElement(By.xpath(String.format(DROP_DOWN_LOCATOR, label))).click();
+        driver.findElement(By.xpath(String.format(COMBO_BOX_LOCATOR, label))).click();
         By item = By.xpath(String.format(ITEM_LOCATOR, text));
         wait.until(ExpectedConditions.visibilityOfElementLocated(item));
-        driver.findElement(item);
+        driver.findElement(item).click();
     }
 
     public void createNewContact() {
