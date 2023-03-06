@@ -31,7 +31,7 @@ public class AccountsPage extends BasePage {
         return this;
     }
 
-    public NewAccountModalPage createNewAccount() {
+    public NewAccountModalPage clickNewButton() {
         driver.findElement(NEW_BTN_LOCATOR).click();
         return new NewAccountModalPage(driver);
     }

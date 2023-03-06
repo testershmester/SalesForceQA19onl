@@ -1,6 +1,7 @@
 package by.teachmeskills.page;
 
 import by.teachmeskills.BasePage;
+import by.teachmeskills.dto.Account;
 import by.teachmeskills.wrapper.DropDown;
 import by.teachmeskills.wrapper.Input;
 import org.openqa.selenium.By;
@@ -16,11 +17,11 @@ public class NewAccountModalPage extends BasePage {
         super(driver);
     }
 
-    public AccountDetailsPage createNewAccount(String accountName, String type, String industry, String phone) {
-        new Input(driver, "Account Name").fillIn(accountName);
-        new Input(driver, "Account Information", "Phone").fillIn(phone);
-        new DropDown(driver, "Type").select(type);
-        new DropDown(driver, "Industry").select(industry);
+    public AccountDetailsPage createNewAccount(Account account) {
+        new Input(driver, "Account Name").fillIn(account.getAccountName());
+        new Input(driver, "Account Information", "Phone").fillIn(account.getPhone());
+        new DropDown(driver, "Type").select(account.getType());
+        new DropDown(driver, "Industry").select(account.getIndustry());
         driver.findElement(SAVE_BUTTON).click();
         return new AccountDetailsPage(driver);
     }
