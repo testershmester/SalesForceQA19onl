@@ -33,7 +33,11 @@ public class AccountDetailsPage extends BasePage {
 
     public Account getAccount() {
         String phone = driver.findElement(this.phone).getText();
-        return new Account(getAccountInformation("Account Name"), getAccountInformation("Type"),
-                           getAccountInformation("Industry"), phone);
+        return Account.builder()
+                      .accountName(getAccountInformation("Account Name"))
+                      .type(getAccountInformation("Type"))
+                      .industry(getAccountInformation("Industry"))
+                      .phone(phone)
+                      .build();
     }
 }
